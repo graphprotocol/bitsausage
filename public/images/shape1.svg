@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="905px" height="1053px" viewBox="0 0 905 1053" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Fill 1</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="26.9835418%" y1="13.2229657%" x2="98.4090299%" y2="98.109198%" id="linearGradient-1">
+            <stop stop-color="#454959" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#CD94B9" stop-opacity="0.746518342" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Web" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Landing-Page" transform="translate(0.000000, -1415.000000)" fill="url(#linearGradient-1)">
+            <g id="Group-2" transform="translate(-1.000000, 1112.984375)">
+                <path d="M1,1370 C1,1370 298,1370 892,1370 C1005.52136,1302.89783 363,1158 315.5,759.5 C268,361 148.57663,110.000504 1,110" id="Fill-1"></path>
+            </g>
+        </g>
+    </g>
+</svg>

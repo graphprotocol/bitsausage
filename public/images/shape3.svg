@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="874px" height="1234px" viewBox="0 0 874 1234" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Fill 1</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="-66.676588%" y1="36.2951226%" x2="80.7894211%" y2="79.389156%" id="linearGradient-1">
+            <stop stop-color="#0099FF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#5D52FF" stop-opacity="0.441136877" offset="47.8755436%"></stop>
+            <stop stop-color="#9627FF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Web" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Landing-Page" transform="translate(-1046.000000, -1149.000000)" fill="url(#linearGradient-1)">
+            <g id="Group-2" transform="translate(-1.000000, 1112.984375)">
+                <path d="M1998.78138,74.7186249 C1757.94392,925.218625 1716.50952,990.218625 1439.78691,1061.21862 C1163.0643,1132.21862 1162.69435,1246.21862 629.226437,1295.72644 L1998.78138,1292.21862 L1998.78138,74.7186249 Z" id="Fill-1" transform="translate(1314.003906, 685.222531) scale(-1, 1) rotate(90.000000) translate(-1314.003906, -685.222531) "></path>
+            </g>
+        </g>
+    </g>
+</svg>
