@@ -3,12 +3,13 @@ import { withStyles } from '@material-ui/core/styles'
 import classnames from 'classnames'
 import styles from './Button.styles'
 
-const Button = ({ href, target, text, classes, variant }) => (
-  <div className={classes.button}>
+const Button = ({ href, target, text, classes, variant, onClick, wrapper }) => (
+  <div className={classnames(classes.button, classes[wrapper])}>
     <a
       className={classnames(classes.link, classes[variant])}
       href={href}
       target={target}
+      onClick={onClick}
     >
       {text}
     </a>
