@@ -19,6 +19,7 @@ type Bid {
 type SausageToken {
   id: ID! @unique
   type: BitSausageType
+  kind: String
 }
 
 type User {
