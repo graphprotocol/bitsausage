@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "web3": "^1.0.0-beta.36",
     "zeppelin-solidity": "^1.12.0"
   },
   "devDependencies": {

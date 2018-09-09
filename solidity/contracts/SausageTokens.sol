@@ -1,9 +1,15 @@
 
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.24;
 
 import "../node_modules/zeppelin-solidity/contracts/token/ERC721/ERC721Token.sol";
+import "./Auction.sol";
+
 
 contract SausageTokens is ERC721Token {
+    // AuctionContractCode acc;
+
+
+    
     constructor (string _name, string _symbol) public
         ERC721Token(_name, _symbol)
     {
@@ -21,4 +27,12 @@ contract SausageTokens is ERC721Token {
         super._mint(_to, _tokenId);
         super._setTokenURI(_tokenId, _tokenURI);
     }
+
+
+    function newAuction(uint256 id, string name) public{
+        // address newContract = 
+        new Auction(msg.sender, id, name);
+        // acc = newContract;
+    }
+
 }
