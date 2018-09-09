@@ -24,6 +24,12 @@ const styles = {
       opacity: 0.6
     }
   },
+  big: {
+    top: '400px',
+    left: '50%',
+    marginLeft: '-200px',
+    maxWidth: '380px'
+  },
   link: {
     position: 'relative',
     height: '50px',
@@ -42,6 +48,9 @@ const styles = {
     borderRadius: '26px',
     cursor: 'pointer',
     transition: `width 0.3s cubic-bezier(0.64, 0.04, 0.35, 1)`
+  },
+  bigInner: {
+    width: '382px'
   },
   dark: {
     background: 'transparent',

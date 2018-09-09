@@ -15,7 +15,8 @@
     "react-dom": "^16.4.2",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
-    "unfetch": "^3.1.1"
+    "unfetch": "^3.1.1",
+    "web3": "^1.0.0-beta.36"
   },
   "scripts": {
     "start": "react-scripts start",
