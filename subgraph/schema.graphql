@@ -1,31 +1,29 @@
 type Auction {
-  id: ID! @unique
+  id: ID!
   seller: User
-  bids: [Bid!]! @relation(name: "AuctionOnBids")
-  currentBid: Bid @relation(name: "AuctionOnCurrentBid")
-  previousBid: Bid @relation(name: "AuctionOnPreviousBid")
+  bids: [Bid!] @derivedFrom(field: "auction")
+  currentBid: Bid!
+  previousBid: Bid!
   expirationTime: DateTime
   item: SausageToken
 }
 
 type Bid {
-  id: ID! @unique
+  id: ID!
   amount: Int!
   timestamp: DateTime
   bidder: User
-  auction: Auction @relation(name: "AuctionOnBids")
 }
 
 type SausageToken {
-  id: ID! @unique
+  id: ID!
   type: BitSausageType
-  kind: String
 }
 
 type User {
-  id: ID! @unique
+  id: ID!
   name: String
-  address: String
+  address: Byte
   bid: Bid
 }
 

@@ -1,2 +1,2 @@
-endpoint: https://us1.prisma.sh/nevena-djaja/hello-hacker/dev
-datamodel: ../src/domain/schema.graphql
+endpoint: https://us1.prisma.sh/nevena-djaja/wurstauction/dev
+datamodel: ../dapp/src/domain/schema.graphql
