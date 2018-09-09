@@ -1,0 +1,7 @@
+{
+  "extend": "./node_modules/graph-cli/tsconfig.json",
+  "files": ["ad-networks.ts"],
+  "compilerOptions": {
+    "types": ["graph-cli"]
+  }
+}
