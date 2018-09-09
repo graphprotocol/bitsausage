@@ -2,7 +2,10 @@ import React from 'react'
 import { Grid, Typography } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import classnames from 'classnames'
+import Web3 from 'web3';
 
+
+import contractJson from './Auction.json'
 import styles from './Layout.styles'
 import Button from '../Button/Button'
 import RowItem from '../RowItem/RowItem'
@@ -10,27 +13,40 @@ import RowItem from '../RowItem/RowItem'
 class Layout extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { bid: 0 }
+    this.state = { bid: 0, data: [] }
+
 
     this.handleOpenClick = this.handleOpenClick.bind(this)
     this.handleCloseClick = this.handleCloseClick.bind(this)
     this.onBidChange = this.onBidChange.bind(this)
   }
 
+  componentDidMount() {
+    const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
+    web3.eth.getAccounts().then((data) => this.setState({data: data}));
+  }
+
   handleOpenClick() {
-    if (this.state.bid === 13) {
+    const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
+    const account0 = this.state.data[0]
+
+    let myContract = new web3.eth.Contract(contractJson.abi, '0xAeB9Ad0EaeE1Ea1B47f181c8C2e7b5927b25106c');
+    myContract.methods.bid().send({'from': account0, value: this.state.bid}).then(()=>{
+    if (this.state.bid === 14) {
       document.querySelector('.overlay').style.display = 'block'
       window.scroll({
         top: 0,
         behavior: 'smooth'
       })
     }
+    })
+
+
   }
 
   handleCloseClick() {
     document.querySelector('.overlay').style.display = 'none'
     const bid = document.querySelector('#bid').offsetTop
-    console.log('bid: ', bid)
     window.scroll({
       top: bid,
       behavior: 'smooth'

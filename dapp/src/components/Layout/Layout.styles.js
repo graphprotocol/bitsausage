@@ -17,8 +17,11 @@ const styles = {
       position: 'absolute',
       top: '200px',
       left: '0',
-      maxWidth: '1400px',
-      width: '100%'
+      width: '1400px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      left: 0,
+      right: 0
     },
     transition: `top 1s ease`
   },

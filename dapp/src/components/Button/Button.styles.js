@@ -26,9 +26,11 @@ const styles = {
   },
   big: {
     top: '400px',
-    left: '50%',
-    marginLeft: '-200px',
-    maxWidth: '380px'
+    left: 0,
+    width: '380px',
+    right: 0,
+    marginLeft: 'auto',
+    marginRight: 'auto'
   },
   link: {
     position: 'relative',
