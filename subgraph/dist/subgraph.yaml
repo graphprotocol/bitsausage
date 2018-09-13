@@ -1,0 +1,29 @@
+specVersion: 0.0.1
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Bitsausage
+    source:
+      address: AeB9Ad0EaeE1Ea1B47f181c8C2e7b5927b25106c
+      abi: Auction
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.1
+      language: wasm/assemblyscript
+      file: Bitsausage/Bitsausage.wasm
+      entities:
+        - Auction
+        - Bid
+        - SausageToken
+        - User
+      abis:
+        - name: Auction
+          file: Bitsausage/abis/Auction.json
+      eventHandlers:
+        - event: 'LogNewBid(address,uint256,uint256,string)'
+          handler: logNewBid
+        - event: 'LogAuctionOpen(string,address,uint256,uint256)'
+          handler: logAuctionOpen
+        - event: 'LogAuctionClosed(string,address,uint256,uint256,address,uint256)'
+          handler: logAuctionClosed

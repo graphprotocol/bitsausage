@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 
-import Layout from './components/Layout/Layout'
+import Layout from './pages/Layout/Layout'
 
 const GET_USERS = gql`
   {

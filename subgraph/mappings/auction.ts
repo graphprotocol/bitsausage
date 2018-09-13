@@ -1,10 +1,12 @@
 export function logNewBid(event: LogNewBid): void {
   let bid = new Entity()
-  bid.setAddress('latestBidder', event.params._latestBidder)
+  let auctionID = Auction.bind(event.address, event.blockHash).uniqueID()
 
+  bid.setAddress('latestBidder', event.params._latestBidder)
   bid.setU256('amount', event.params._amount)
   bid.setU256('timeLeft', event.params._timeLeft)
   bid.setString('name', event.params._name)
+  bid.setU256('auction', auctionID)
 
   store.set('Bid', event.params._name, bid)
 }

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Bratwurst",
+    "description": "Bratwurst is a type of German sausage made from veal, beef, or most commonly pork. The name is derived from the Old High German Brätwurst, from brät-, finely chopped meat, and Wurst, sausage, although in modern German it is often associated with the verb braten, to pan fry or roast."
+  },
+  {
+    "name": "Blutwurst",
+    "description": "Blood sausages are sausages filled with blood that are cooked or dried and mixed with a filler until they are thick enough to solidify when cooled. Variants are found worldwide. Pig, cow, sheep, duck, and goat blood can be used, varying by country."
+  },
+  {
+    "name": "Currywurst",
+    "description": "Currywurst is a fast food dish consisting of steamed, then fried pork sausage typically cut into slices and seasoned with curry ketchup, a sauce based on spiced ketchup or tomato paste, itself topped with curry powder, or a ready-made ketchup seasoned with curry and other spices."
+  },
+  {
+    "name": "Veganwurst",
+    "description": "The Veganwurst is the ideal barbecue companion. Made entirely from vegetable ingredients with a hint of herbs, the Sausage Spiral goes well with salad, dips, and BBQ sauces. Wheaty products are generally suitable for freezing and defrosting."
+  },
+  {
+    "name": "Weisswurst",
+    "description": "Weisswurst is a traditional Bavarian sausage made from minced veal and pork back bacon. It is usually flavoured with parsley, lemon, mace, onions, ginger, and cardamom, although there are some variations. Then the mixture is stuffed into pork casings and separated into individual sausages measuring about ten to twelve centimeters in length and three to four centimeters in thickness."
+  },
+  {
+    "name": "Frankfurter",
+    "description": "Frankfurter is a thin parboiled sausage traditionally made of pork and beef in a casing of sheep's intestine, then given a low temperature smoking."
+  }
+]

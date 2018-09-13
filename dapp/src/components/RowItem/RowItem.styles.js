@@ -1,7 +1,8 @@
 const styles = {
   bidRow: {
     flexWrap: 'nowrap',
-    textAlign: 'left'
+    textAlign: 'left',
+    margin: '20px 0'
   },
   number: {
     position: 'relative',
@@ -21,6 +22,8 @@ const styles = {
     }
   },
   bidAmount: {
+    marginLeft: '20px',
+    marginTop: '-5px',
     '& $number': {
       fontSize: '2rem',
       '& span': {

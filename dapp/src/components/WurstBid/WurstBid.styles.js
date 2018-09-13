@@ -1,61 +1,4 @@
 const styles = {
-  root: {
-    backgroundColor: '#fff',
-    position: 'relative',
-    textAlign: 'center'
-  },
-  overlay: {
-    display: 'none',
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    top: 0,
-    left: 0,
-    background: `rgba(0,0,0,0.8)`,
-    zIndex: 20,
-    '& img': {
-      position: 'absolute',
-      top: '200px',
-      left: '0',
-      width: '1400px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      left: 0,
-      right: 0
-    },
-    transition: `top 1s ease`
-  },
-  congrats: {
-    color: '#fff',
-    fontWeight: 900,
-    fontSize: '0.875rem',
-    fontFamily: 'Lato',
-    lineHeight: '1rem',
-    letterSpacing: '1.75px',
-    textAlign: 'center',
-    marginTop: '200px',
-    textTransform: 'uppercase'
-  },
-  big: {
-    fontSize: '2.813rem',
-    fontWeight: 300,
-    letterSpacing: '5.64px',
-    lineHeight: '54px'
-  },
-  banner: {
-    background: `url('/images/banner.png') no-repeat`,
-    backgroundPosition: 'top left',
-    backgroundSize: 'cover',
-    height: '200px',
-    width: '100%',
-    position: 'absolute',
-    top: 0,
-    left: 0
-  },
-  space: {
-    height: '40px',
-    width: '100%'
-  },
   circle: {
     width: '366px',
     height: '366px',
@@ -76,12 +19,13 @@ const styles = {
   },
   name: {
     fontFamily: 'Lato',
-    fontSize: 45,
+    fontSize: '2.625rem',
     fontWeight: 300,
     color: '#000',
     paddingTop: '150px',
     paddingBottom: '10px',
-    letterSpacing: '5.63px'
+    letterSpacing: '5.63px',
+    textTransform: 'uppercase'
   },
   pillCopy: {
     position: 'absolute',
@@ -104,7 +48,10 @@ const styles = {
     color: '#585858',
     fontFamily: 'Lato',
     letterSpacing: '1.75px',
-    marginBottom: '50px'
+    marginBottom: '50px',
+    marginTop: '-90px',
+    zIndex: 16,
+    position: 'relative'
   },
   text: {
     color: '#585858',
@@ -177,54 +124,6 @@ const styles = {
       top: '-2px',
       right: '40px'
     }
-  },
-  history: {
-    marginTop: '100px',
-    margin: '0 auto',
-    paddingBottom: '180px'
-  },
-  title: {
-    fontSize: '2rem',
-    fontFamily: 'Lato',
-    fontWeight: 300,
-    letterSpacing: '4px',
-    textAlign: 'center',
-    color: '#000'
-  },
-  count: {
-    width: '80px',
-    height: '20px',
-    borderRadius: '21px',
-    backgroundColor: '#C7C7C7',
-    margin: '40px auto',
-    color: '#fff',
-    fontFamily: 'Lato',
-    fontSize: '0.75rem',
-    lineHeight: '20px',
-    fontWeight: 900,
-    position: 'relative',
-    '&::before, &::after': {
-      content: 'close-quote',
-      background: `url('/images/btn-edge-small.svg') no-repeat`,
-      width: '9px',
-      height: '9px',
-      position: 'absolute',
-      zIndex: 1,
-      transition: `background 0.3s cubic-bezier(0.64, 0.04, 0.35, 1)`
-    },
-    '&::before': {
-      top: '6px',
-      left: '-8px'
-    },
-    '&::after': {
-      top: '6px',
-      right: '-8px',
-      transform: 'rotate(180deg)'
-    }
-  },
-  bidWrapper: {
-    maxWidth: '720px',
-    margin: '0 auto'
   }
 }
 

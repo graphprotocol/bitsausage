@@ -2,7 +2,7 @@
 
 This repo consists of three parts:
 
-- Solidity contracts for the bitsausage auction
+- Solidity contracts for the Bitsausage auction
 - Subgraph for the backend of the Dapp
 - Dapp for the UI
 
@@ -13,11 +13,49 @@ This repo consists of three parts:
 - Example components can be found in [`src/components/`](src/components/)
 - An example GraphQL schema can be found in [`src/domain/schema.graphql`](src/domain/schema.graphql)
 
-## Build and run the Dapp
+## Installation
 
-1.  cd into the dapp folder before running the steps below
-2.  Run `yarn` to install dependencies.
-3.  Run `yarn start` to serve the example components on http://localhost:3000
-4.  Run `yarn build` to build the code for production
+1. Truffle 5 beta:
+
+   - `$ npm uninstall -g truffle` (or `$ yarn global remove truffle`)
+
+   - `$ npm install -g truffle@beta` (or `$ yarn global add truffle@beta`)
+
+2. ganache-cli
+
+   - `$ npm install -g ganache-cli` (or `$ yarn global add ganache-cli`)
+
+## Development
+
+Open 4 terminal tabs, and follow the steps in each tab:
+
+1. Run `$ ganache-cli -m hi`
+2. Make sure you are inside of the solidity folder and run `$ truffle compile` followed by `$ truffle migrate`
+3. Make sure you are inside of the solidity folder again, and run `$ truffle console --network development`.
+   Once you are in the console, run the following:
+
+```
+  > sausageID = 1234
+  > sausageSymbol = 'Bratwurst'
+  > description = 'Bratwurst - RARE'
+  > auctionAddr = '0xAeB9Ad0EaeE1Ea1B47f181c8C2e7b5927b25106c'
+  > SausageTokens.deployed().then(inst => { SausageInstance = inst})
+  > SausageInstance.mintUniqueTokenTo(auctionAddr, sausageID, description)
+  > Auction.deployed().then(inst => { AuctionInstance = inst})
+  > AuctionInstance.startAuction(1000)
+```
+
+4. Make sure you are inside of the dapp folder and then you can run the following:
+
+   - `yarn` to install dependencies
+   - `yarn start` to serve the UI code on http://localhost:3000
+
+## Build the Dapp
+
+Run `yarn build` to build the code for production
 
 ## License
+
+Copyright © 2018 Graph Protocol, Inc.
+
+Licensed under the [MIT License](LICENSE).

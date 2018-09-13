@@ -35,7 +35,7 @@ const styles = {
   link: {
     position: 'relative',
     height: '50px',
-    width: '160px',
+    padding: '0 60px',
     color: '#fff',
     fontSize: '1.25rem',
     fontFamily: 'Lato',
