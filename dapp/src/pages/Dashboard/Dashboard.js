@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
         <Grid item className={classes.bidstats}>
           <BidStats
             title="Bratwurst"
-            pillText="Rare"
+            pillText="rare"
             rows={[1, 2, 3]}
             coin="hotcoin.svg"
             value={5}
@@ -23,7 +23,7 @@ class Dashboard extends React.Component {
         <Grid item className={classes.bidstats}>
           <BidStats
             title="Currywurst"
-            pillText="Common"
+            pillText="common"
             rows={[1, 2, 3]}
             coin="hotcoin.svg"
             value={8}

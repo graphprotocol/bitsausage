@@ -5,11 +5,13 @@ import classnames from 'classnames'
 
 import styles from './WurstBid.styles'
 import Button from '../../components/Button/Button'
+import Pill from '../../components/Pill/Pill'
 
 const Wurst = ({
   classes,
   name,
   description,
+  type,
   bid,
   leadingBid,
   auctionSecLeft,
@@ -17,13 +19,20 @@ const Wurst = ({
   handleBidClick
 }) => (
   <Grid className={classes.root}>
-    <div className={classes.circle}>
-      <Typography className={classes.name}>{name}</Typography>
-      <img src="/images/sausage-pill.svg" alt="sausage pill" />
-      <span className={classes.pillCopy}>RARE</span>
-    </div>
-    <Typography className={classes.description}>{description}</Typography>
-    <img src={`/images/sausages/${name}.png`} alt={name} />
+    <Grid container direction="column" justify="center">
+      <Grid item>
+        <Typography className={classes.name}>{name}</Typography>
+        <Pill text={type} />
+      </Grid>
+      <Grid item>
+        <Typography className={classes.description}>{description}</Typography>
+        <img
+          src={`/images/sausages/${name}.png`}
+          alt={name}
+          className={classes.image}
+        />
+      </Grid>
+    </Grid>
     <Grid container justify="center" className={classes.bids}>
       <Grid item xs={6}>
         <Typography className={classes.text}>Leading bid</Typography>

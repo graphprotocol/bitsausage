@@ -17,9 +17,9 @@ class Layout extends React.Component {
       <Grid className={classes.root}>
         <Nav />
         <Switch>
-          <Route exact path="/" component={About} />
-          <Route path="/sausages/:name" component={Landing} />
-          <Route path="/dashboard" component={Dashboard} />
+          <Route exact path="/" component={Landing} />
+          <Route path="/about" component={About} />
+          <Route path="/profile" component={Dashboard} />
         </Switch>
       </Grid>
     )

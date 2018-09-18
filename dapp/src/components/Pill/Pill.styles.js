@@ -1,16 +1,16 @@
 const styles = {
   pill: {
-    backgroundColor: '#3C0A0C',
     display: 'inline-block',
     padding: '2px 12px',
     borderRadius: '21px',
     position: 'relative',
+    backgroundColor: '#C7C7C7',
     '&::before': {
       content: 'close-quote',
       position: 'absolute',
       background: `url('/images/pill-triangle.svg') no-repeat`,
       left: '-8px',
-      top: '8px',
+      top: '6px',
       width: '10px',
       height: '10px'
     },
@@ -20,7 +20,7 @@ const styles = {
       background: `url('/images/pill-triangle.svg') no-repeat`,
       transform: 'rotate(180deg)',
       right: '-8px',
-      top: '8px',
+      top: '6px',
       width: '10px',
       height: '10px'
     }

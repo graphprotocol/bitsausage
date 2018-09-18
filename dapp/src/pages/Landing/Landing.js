@@ -16,12 +16,12 @@ class Landing extends React.Component {
     this.state = {
       bid: 0,
       data: [],
-      name: props.match.params.name,
-      description: wursts.filter(
-        wurst => wurst.name === props.match.params.name
-      )[0].description,
+      name: 'Bratwurst', // props.match.params.name,
+      description: wursts.filter(wurst => wurst.name === 'Bratwurst')[0]
+        .description,
       leadingBid: 0,
-      auctionSecLeft: 0
+      auctionSecLeft: 0,
+      type: 'common'
     }
 
     window.scrollTo(0, 0)
@@ -110,9 +110,14 @@ class Landing extends React.Component {
           auctionSecLeft={this.state.auctionSecLeft}
           onBidChange={this.onBidChange}
           handleBidClick={this.handleBidClick}
+          type={this.state.type}
         />
         <img src="/images/divider-big.svg" alt="divider" />
-        <BidStats title="Bid history" pillText="100 bids" rows={[1, 2, 3, 4]} />
+        <BidStats
+          title={this.state.name}
+          pillText="100 bids"
+          rows={[1, 2, 3, 4]}
+        />
       </Grid>
     )
   }

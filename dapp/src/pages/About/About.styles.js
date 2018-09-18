@@ -28,7 +28,7 @@ const styles = {
     backgroundPositionY: 'center'
   },
   bigDivider: {
-    margin: '140px 0 80px 0'
+    margin: '80px 0'
   },
   title: {
     color: '#000',
@@ -37,9 +37,6 @@ const styles = {
     fontWeight: 300,
     letterSpacing: '4px',
     textTransform: 'uppercase'
-  },
-  wrapper: {
-    marginTop: '100px'
   }
 }
 

@@ -1,28 +1,10 @@
 const styles = {
-  circle: {
-    width: '366px',
-    height: '366px',
-    borderRadius: '50%',
-    zIndex: 1,
-    position: 'relative',
-    margin: '0 auto',
-    backgroundColor: '#fff',
-    '&::before': {
-      content: 'close-quote',
-      position: 'absolute',
-      background: `url('/images/sausage-logo.svg') no-repeat`,
-      width: '100px',
-      height: '75px',
-      top: '45px',
-      right: '133px'
-    }
-  },
   name: {
     fontFamily: 'Lato',
-    fontSize: '2.625rem',
+    fontSize: '2.813rem',
     fontWeight: 300,
     color: '#000',
-    paddingTop: '150px',
+    paddingTop: '100px',
     paddingBottom: '10px',
     letterSpacing: '5.63px',
     textTransform: 'uppercase'
@@ -39,19 +21,22 @@ const styles = {
     paddingTop: '2px'
   },
   description: {
-    width: '500px',
+    maxWidth: '620px',
+    width: '100%',
     margin: '0 auto',
+    marginTop: '10px',
     fontSize: '15px',
     fontWeight: '500',
     textAlign: 'center',
-    lineHeight: '19px',
     color: '#585858',
     fontFamily: 'Lato',
     letterSpacing: '1.75px',
-    marginBottom: '50px',
-    marginTop: '-90px',
     zIndex: 16,
     position: 'relative'
+  },
+  image: {
+    width: '100%',
+    maxWidth: '800px'
   },
   text: {
     color: '#585858',
@@ -117,6 +102,10 @@ const styles = {
       fontWeight: 300,
       textAlign: 'center',
       paddingRight: '24px'
+    },
+    '& input::-webkit-inner-spin-button, & input::-webkit-outer-spin-button': {
+      appearance: 'none',
+      margin: 0
     },
     '& span': {
       position: 'absolute',

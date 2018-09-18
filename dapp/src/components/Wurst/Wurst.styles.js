@@ -25,6 +25,10 @@ const styles = {
     margin: '0 auto',
     padding: '18px 0',
     backgroundPositionY: 'center'
+  },
+  image: {
+    width: '100%',
+    maxWidth: '800px'
   }
 }
 

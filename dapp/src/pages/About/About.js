@@ -30,17 +30,47 @@ const About = ({ classes }) => (
         alt="divider"
         className={classes.bigDivider}
       />
-      <Typography className={classes.title}>Available Sausages</Typography>
-      <Grid className={classes.wrapper}>
-        {[
-          'Bratwurst',
-          'Blutwurst',
-          'Currywurst',
-          'Veganwurst',
-          'Weisswurst',
-          'Frankfurter'
-        ].map(name => (
-          <Wurst name={name} key={name} />
+      <Grid container direction="column" spacing={40}>
+        {['Bratwurst', 'Currywurst', 'Veganwurst', 'Frankfurter'].map(name => (
+          <Grid item key={name}>
+            <Wurst name={name} pillText="common" />
+          </Grid>
+        ))}
+      </Grid>
+      <img
+        src="/images/divider-big.svg"
+        alt="divider"
+        className={classes.bigDivider}
+      />
+      <Grid container direction="column" spacing={40}>
+        {['Knackwurst', 'Leberwurst'].map(name => (
+          <Grid item key={name}>
+            <Wurst name={name} pillText="rare" />
+          </Grid>
+        ))}
+      </Grid>
+      <img
+        src="/images/divider-big.svg"
+        alt="divider"
+        className={classes.bigDivider}
+      />
+      <Grid container direction="column" spacing={40}>
+        {['Blutwurst', 'Weisswurst'].map(name => (
+          <Grid item key={name}>
+            <Wurst name={name} pillText="epic" />
+          </Grid>
+        ))}
+      </Grid>
+      <img
+        src="/images/divider-big.svg"
+        alt="divider"
+        className={classes.bigDivider}
+      />
+      <Grid container direction="column" spacing={40}>
+        {['Worstwurst'].map(name => (
+          <Grid item key={name}>
+            <Wurst name={name} pillText="legendary" />
+          </Grid>
         ))}
       </Grid>
     </Grid>

@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles'
 
 import RowItem from '../RowItem/RowItem'
 import Pill from '../Pill/Pill'
-import Button from '../Button/Button'
 import styles from './BidStats.styles'
 
 const BidStats = ({
@@ -25,13 +24,24 @@ const BidStats = ({
       </div>
     )}
     <Typography className={classes.title}>{title}</Typography>
-    <Pill text={pillText} />
+    <Grid container direction="column" justify="center" spacing={24}>
+      <Grid item>
+        <img
+          src={`/images/sausages/${title}.png`}
+          alt={title}
+          className={classes.sausageImg}
+        />
+      </Grid>
+      <Grid item>
+        <Pill text={pillText} />
+      </Grid>
+    </Grid>
+
     <Grid className={classes.bidWrapper}>
       {rows.map((el, index) => (
         <RowItem key={index} />
       ))}
     </Grid>
-    <Button text="SELL ALL" onClick={handleSellClick} classname="sell" />
   </Grid>
 )
 

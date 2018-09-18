@@ -36,6 +36,14 @@ const styles = {
     color: '#fff',
     fontFamily: 'Lato',
     fontWeight: 900
+  },
+  sausageImg: {
+    width: '100%',
+    height: '100%',
+    maxWidth: '250px',
+    maxHeight: '92px',
+    objectFit: 'cover',
+    marginBottom: '20px'
   }
 }
 
