@@ -42,7 +42,9 @@ const styles = {
     color: '#585858',
     textTransform: 'uppercase',
     fontFamily: 'Lato',
-    fontSize: '14px'
+    fontSize: '14px',
+    fontWeight: 900,
+    letterSpacing: '1.75px'
   },
   divider: {
     background: `url('/images/swiggly.svg') no-repeat`,
@@ -65,6 +67,7 @@ const styles = {
     fontWeight: 500,
     '& span': {
       top: '-12px',
+      left: '40px',
       position: 'absolute',
       textTransform: 'uppercase',
       fontSize: ' 0.875rem',
@@ -72,7 +75,13 @@ const styles = {
       opacity: 0.5,
       fontWeight: 900,
       right: '80px'
+    },
+    '& $leadingBid': {
+      right: '-40px'
     }
+  },
+  leadingBid: {
+    position: 'absolute'
   },
   seconds: {
     color: '#CF6652',

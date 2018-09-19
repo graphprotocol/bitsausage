@@ -2,6 +2,7 @@ import React from 'react'
 import { Grid } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import Web3 from 'web3'
+import classnames from 'classnames'
 
 import contractJson from '../../domain/Auction.json'
 import wursts from '../../domain/wursts.json'
@@ -21,34 +22,36 @@ class Landing extends React.Component {
         .description,
       leadingBid: 0,
       auctionSecLeft: 0,
-      type: 'common'
+      type: 'common',
+      latestBidder: ''
     }
-
-    window.scrollTo(0, 0)
-
     this.handleBidClick = this.handleBidClick.bind(this)
     this.handleCloseClick = this.handleCloseClick.bind(this)
     this.onBidChange = this.onBidChange.bind(this)
+    this.formatTimeLeft = this.formatTimeLeft.bind(this)
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0)
+
     const web3 = new Web3(Web3.givenProvider || 'http://localhost:8545')
+    this.setState({ web3: web3 })
     web3.eth.getAccounts().then(data => {
       this.setState({ data: data })
     })
   }
 
   handleBidClick() {
-    const web3 = new Web3(Web3.givenProvider || 'http://localhost:8545')
+    if (this.state.web3.currentProvider.isMetaMask !== true) {
+      return this.setState({ noMetamask: true })
+    }
     const account0 = this.state.data[0]
-    console.log('account: ', account0)
 
-    let auctionContract = new web3.eth.Contract(
+    let auctionContract = new this.state.web3.eth.Contract(
       contractJson.abi,
       '0xAeB9Ad0EaeE1Ea1B47f181c8C2e7b5927b25106c'
     )
-    // debugger
-    console.log('Contract: ', auctionContract)
+
     auctionContract.methods
       .sausageName()
       .call()
@@ -65,10 +68,15 @@ class Landing extends React.Component {
       .then(latestBid => this.setState({ leadingBid: parseInt(latestBid, 10) }))
 
     auctionContract.methods
+      .latestBidder()
+      .call()
+      .then(latestBidder => this.setState({ latestBidder: latestBidder }))
+
+    auctionContract.methods
       .bid()
       .send({ from: account0, value: this.state.bid })
       .then(
-        () => {
+        data => {
           if (this.state.bid === 14) {
             document.querySelector('.overlay').style.display = 'block'
             window.scroll({
@@ -96,6 +104,12 @@ class Landing extends React.Component {
     this.setState({ bid: parseInt(e.target.value, 10) })
   }
 
+  formatTimeLeft(time) {
+    const minutes = Math.floor(time / 60)
+    const seconds = time - minutes * 60
+    return { minutes, seconds }
+  }
+
   render() {
     const { classes } = this.props
 
@@ -107,11 +121,31 @@ class Landing extends React.Component {
           description={this.state.description}
           bid={this.state.bid}
           leadingBid={this.state.leadingBid}
-          auctionSecLeft={this.state.auctionSecLeft}
+          auctionSecLeft={this.formatTimeLeft(123)}
           onBidChange={this.onBidChange}
           handleBidClick={this.handleBidClick}
           type={this.state.type}
         />
+        {this.state.noMetamask && (
+          <div className={classes.message}>
+            You need to install{' '}
+            <a
+              href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn"
+              target="_blank"
+            >
+              MetaMask
+            </a>{' '}
+            to proceed
+          </div>
+        )}
+        {this.state.latestBidder.length > 0 &&
+          (this.state.data[0] === this.state.latestBidder ? (
+            <div className={classes.message}>You have the leading bid</div>
+          ) : (
+            <div className={classnames(classes.message, classes.lostBid)}>
+              Bidder 1 overbid you
+            </div>
+          ))}
         <img src="/images/divider-big.svg" alt="divider" />
         <BidStats
           title={this.state.name}

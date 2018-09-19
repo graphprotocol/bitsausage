@@ -38,15 +38,20 @@ const Wurst = ({
         <Typography className={classes.text}>Leading bid</Typography>
         <div className={classes.divider} />
         <Typography className={classes.number}>
-          {leadingBid} <span>eth</span>
+          {leadingBid} <span className={classes.leadingBid}>eth</span>
         </Typography>
       </Grid>
       <Grid item xs={6}>
         <Typography className={classes.text}>Ends in</Typography>
         <div className={classes.divider} />
-        <Typography className={classnames(classes.number, classes.seconds)}>
-          {auctionSecLeft} <span>sec</span>
-        </Typography>
+        <Grid container justify="space-evenly">
+          <Typography className={classnames(classes.number, classes.seconds)}>
+            {auctionSecLeft.minutes} <span>min</span>
+          </Typography>
+          <Typography className={classnames(classes.number, classes.seconds)}>
+            {auctionSecLeft.seconds} <span>sec</span>
+          </Typography>
+        </Grid>
       </Grid>
     </Grid>
     <Grid
@@ -63,6 +68,7 @@ const Wurst = ({
             type="number"
             placeholder="0"
             onChange={onBidChange}
+            autoFocus
           />
           <span>ETH</span>
         </label>

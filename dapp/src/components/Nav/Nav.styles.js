@@ -22,15 +22,11 @@ const styles = {
   auctionIcon: {
     background: `url('/images/auction-logo.png') no-repeat`,
     height: '52px',
-    width: '52px',
-    position: 'absolute',
-    left: `calc(50vw - 35px)`
+    width: '52px'
   },
   activeAbout: {
     '& $aboutIcon': {
-      background: `url('/images/info-selected.png') no-repeat`,
-      height: '60px',
-      width: '170px'
+      background: `url('/images/info-selected-responsive.png') no-repeat`
     }
   },
   activeAuction: {
@@ -42,9 +38,7 @@ const styles = {
   },
   activeProfile: {
     '& $profileIcon': {
-      background: `url('/images/profile-selected.png') no-repeat`,
-      height: '60px',
-      width: '250px'
+      background: `url('/images/profile-selected-responsive.png') no-repeat`
     }
   },
   text: {

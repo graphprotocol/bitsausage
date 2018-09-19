@@ -4,7 +4,23 @@ import { Query } from 'react-apollo'
 
 import Layout from './pages/Layout/Layout'
 
-const GET_USERS = gql`
+// const GET_BIDS = gql`
+//   {
+//     bids {
+//       id
+//       amount
+//       timestamp
+//       bidder {
+//         id
+//       }
+//       auction {
+//         id
+//       }
+//     }
+//   }
+// `
+
+const GET_BIDS = gql`
   {
     users {
       id
@@ -16,12 +32,12 @@ const GET_USERS = gql`
 class App extends Component {
   render() {
     return (
-      <Query query={GET_USERS}>
+      <Query query={GET_BIDS}>
         {({ loading, error, data }) => {
           if (loading) return ''
           if (error) return `Error! ${error.message}`
 
-          return <Layout name={data.users[0].name} />
+          return <Layout data={data} />
         }}
       </Query>
     )

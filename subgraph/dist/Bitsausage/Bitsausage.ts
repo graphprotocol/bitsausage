@@ -9,7 +9,6 @@ export { allocate_memory }
 declare namespace store {
   function set(entity: string, id: string, data: Entity): void
   function remove(entity: string, id: string): void
-  function get(entity: string, id: string): Entity
 }
 
 /** Host ethereum interface */
@@ -464,41 +463,6 @@ class Value {
   kind: ValueKind
   data: ValuePayload
 
-  toAddress(): Address {
-    assert(this.kind == ValueKind.BYTES, 'Value is not an address.')
-    return changetype<Address>(this.data as u32)
-  }
-
-  toBoolean(): boolean {
-    assert(this.kind == ValueKind.BOOL, 'Value is not a boolean.')
-    return this.data != 0
-  }
-
-  toBigInt(): BigInt {
-    assert(this.kind == ValueKind.BIGINT, 'Value is not an I256, U256 or BigInt.')
-    return changetype<BigInt>(this.data as u32)
-  }
-
-  toBytes(): Bytes {
-    assert(this.kind == ValueKind.BYTES, 'Value is not a byte array.')
-    return changetype<Bytes>(this.data as u32)
-  }
-
-  toU32(): u32 {
-    assert(this.kind == ValueKind.INT, 'Value is not an u32.')
-    return this.data as u32
-  }
-
-  toString(): string {
-    assert(this.kind == ValueKind.STRING, 'Value is not a string.')
-    return changetype<string>(this.data as u32)
-  }
-
-  toArray(): Array<Value> {
-    assert(this.kind == ValueKind.ARRAY, 'Value is not an array.')
-    return changetype<Array<Value>>(this.data as u32)
-  }
-
   static fromAddress(address: Address): Value {
     let value = new Value()
     value.kind = ValueKind.BYTES
@@ -561,7 +525,7 @@ class Value {
     return value
   }
 
-  static fromArray(array: Array<Value>): Value {
+  static fromArray<T>(array: Array<T>): Value {
     let value = new Value()
     value.kind = ValueKind.ARRAY
     value.data = array as u64
@@ -575,35 +539,6 @@ class Value {
  * `Value` objects.
  */
 class Entity extends TypedMap<string, Value> {
-
-  getAddress(key: string): Address {
-    return this.get(key).toAddress()
-  }
-
-  getBoolean(key: string): boolean {
-    return this.get(key).toBoolean()
-  }
-
-  getBigInt(key: string): BigInt {
-    return this.get(key).toBigInt()
-  }
-
-  getBytes(key: string): Bytes {
-    return this.get(key).toBytes()
-  }
-
-  getU32(key: string): u32 {
-    return this.get(key).toU32()
-  }
-
-  getString(key: string): string {
-    return this.get(key).toString()
-  }
-
-  getArray(key: string): Array<Value> {
-    return this.get(key).toArray()
-  }
-
   setString(key: string, value: string): void {
     this.set(key, Value.fromString(value))
   }
@@ -636,7 +571,7 @@ class Entity extends TypedMap<string, Value> {
     this.set(key, Value.fromU256(value))
   }
 
-  setArray(key: string, array: Array<Value>): void {
+  setArray<T>(key: string, array: Array<T>): void {
     this.set(key, Value.fromArray(array))
   }
 
@@ -946,7 +881,8 @@ export function logNewBid(event: LogNewBid): void {
   bid.setU256('amount', event.params._amount)
   bid.setU256('timeLeft', event.params._timeLeft)
   bid.setString('name', event.params._name)
-  bid.setU256('auction', auctionID)
+  bid.setString('auction', auctionID.toHex())
+  bid.setString('id', event.params._name)
 
   store.set('Bid', event.params._name, bid)
 }
@@ -957,8 +893,9 @@ export function logAuctionOpen(event: LogAuctionOpen): void {
   auction.setAddress('tokenAddress', event.params._tokenAddress)
   auction.setU256('EndTime', event.params._EndTime)
   auction.setU256('uniqueID', event.params._uniqueID)
+  auction.setString('id', event.params._uniqueID.toHex())
 
-  store.set('Auction', event.params._uniqueID.toString(), auction)
+  store.set('Auction', event.params._uniqueID.toHex(), auction)
 }
 export function logAuctionClosed(event: LogAuctionClosed): void {
   let auction = new Entity()
@@ -970,6 +907,6 @@ export function logAuctionClosed(event: LogAuctionClosed): void {
   auction.setAddress('winner', event.params._winner)
   auction.setU256('finalBid', event.params._finalBid)
 
-  store.set('Auction', event.params._uniqueID.toString(), auction)
+  store.set('Auction', event.params._uniqueID.toHex(), auction)
 }
 

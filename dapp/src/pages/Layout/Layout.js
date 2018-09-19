@@ -11,8 +11,8 @@ import Dashboard from '../../pages/Dashboard/Dashboard'
 
 class Layout extends React.Component {
   render() {
-    const { classes } = this.props
-
+    const { classes, data } = this.props
+    console.log('DATA: ', data)
     return (
       <Grid className={classes.root}>
         <Nav />
