@@ -23,7 +23,7 @@ module.exports = function(callback) {
 
   AuctionContract.deployed().then(inst => {
     AuctionInstance = inst
-    AuctionInstance.startAuction(1000)
+    AuctionInstance.startAuction(500)
   })
 
   console.log('AUCTION STARTED')

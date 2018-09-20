@@ -17,7 +17,7 @@ class Landing extends React.Component {
     this.state = {
       bid: 0,
       data: [],
-      name: 'Bratwurst', // props.match.params.name,
+      name: '', // props.match.params.name,
       description: wursts.filter(wurst => wurst.name === 'Bratwurst')[0]
         .description,
       leadingBid: 0,
@@ -39,18 +39,17 @@ class Landing extends React.Component {
     web3.eth.getAccounts().then(data => {
       this.setState({ data: data })
     })
-  }
 
-  handleBidClick() {
-    if (this.state.web3.currentProvider.isMetaMask !== true) {
+    if (web3.currentProvider.isMetaMask !== true) {
       return this.setState({ noMetamask: true })
     }
-    const account0 = this.state.data[0]
 
-    let auctionContract = new this.state.web3.eth.Contract(
+    let auctionContract = new web3.eth.Contract(
       contractJson.abi,
       '0xAeB9Ad0EaeE1Ea1B47f181c8C2e7b5927b25106c'
     )
+
+    this.setState({ auctionContract: auctionContract })
 
     auctionContract.methods
       .sausageName()
@@ -61,18 +60,22 @@ class Landing extends React.Component {
       .auctionSecondsLeft()
       .call()
       .then(auctionSecLeft => this.setState({ auctionSecLeft: auctionSecLeft }))
+  }
 
-    auctionContract.methods
+  handleBidClick() {
+    const account0 = this.state.data[0]
+
+    this.state.auctionContract.methods
       .latestBid()
       .call()
       .then(latestBid => this.setState({ leadingBid: parseInt(latestBid, 10) }))
 
-    auctionContract.methods
+    this.state.auctionContract.methods
       .latestBidder()
       .call()
       .then(latestBidder => this.setState({ latestBidder: latestBidder }))
 
-    auctionContract.methods
+    this.state.auctionContract.methods
       .bid()
       .send({ from: account0, value: this.state.bid })
       .then(
@@ -121,7 +124,7 @@ class Landing extends React.Component {
           description={this.state.description}
           bid={this.state.bid}
           leadingBid={this.state.leadingBid}
-          auctionSecLeft={this.formatTimeLeft(123)}
+          auctionSecLeft={this.formatTimeLeft(this.state.auctionSecLeft)}
           onBidChange={this.onBidChange}
           handleBidClick={this.handleBidClick}
           type={this.state.type}

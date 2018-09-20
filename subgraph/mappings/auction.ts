@@ -1,36 +1,40 @@
 export function logNewBid(event: LogNewBid): void {
-  let bid = new Entity()
+  let auction = new Entity()
   let auctionID = Auction.bind(event.address, event.blockHash).uniqueID()
 
-  bid.setAddress('latestBidder', event.params._latestBidder)
+  auction.setAddress('latestBidder', event.params._latestBidder)
+  auction.setString('id', auctionID.toHex())
+
+  let bid = new Entity()
   bid.setU256('amount', event.params._amount)
-  bid.setU256('timeLeft', event.params._timeLeft)
-  bid.setString('name', event.params._name)
   bid.setString('auction', auctionID.toHex())
-  bid.setString('id', event.params._name)
 
-  store.set('Bid', event.params._name, bid)
+  store.set('Bid', auctionID.toHex(), bid)
 }
-export function logAuctionOpen(event: LogAuctionOpen): void {
-  let auction = new Entity()
 
-  auction.setString('name', event.params._name)
-  auction.setAddress('tokenAddress', event.params._tokenAddress)
-  auction.setU256('EndTime', event.params._EndTime)
-  auction.setU256('uniqueID', event.params._uniqueID)
-  auction.setString('id', event.params._uniqueID.toHex())
+export function logAuctionOpen(event: LogAuctionOpen): void {
+  let token = new Entity()
+  let tokenID = event.params._uniqueID.toHex()
+  token.setString('id', tokenID)
+  token.setString('type', event.params._name)
+
+  let auctionID = event.params._uniqueID.toHex()
+  let auction = new Entity()
+  auction.setString('id', auctionID)
+  auction.setString('token', tokenID)
+  auction.setU256('expirationTime', event.params._EndTime)
 
   store.set('Auction', event.params._uniqueID.toHex(), auction)
+  store.set('SausageToken', event.params._uniqueID.toHex(), token)
 }
+
 export function logAuctionClosed(event: LogAuctionClosed): void {
   let auction = new Entity()
+  let auctionID = event.params._uniqueID.toHex()
 
-  auction.setString('name', event.params._name)
-  auction.setAddress('tokenAddress', event.params._tokenAddress)
-  auction.setU256('timeFinished', event.params._timeFinished)
-  auction.setU256('uniqueID', event.params._uniqueID)
-  auction.setAddress('winner', event.params._winner)
-  auction.setU256('finalBid', event.params._finalBid)
+  auction.setU256('id', event.params._uniqueID)
+  auction.setAddress('latestBidder', event.params._winner)
+  auction.setU256('latestBid', event.params._finalBid)
 
   store.set('Auction', event.params._uniqueID.toHex(), auction)
 }

@@ -1,25 +1,24 @@
 type Auction @entity {
   id: ID!
-  seller: User
-  bids: [Bid!] @derivedFrom(field: "auction")
-  currentBid: Bid!
-  previousBid: Bid!
+  token: SausageToken!
+  latestBid: Bid
+  latestBidder: Bytes
+  previousBid: Bid
   expirationTime: String
-  item: SausageToken
+  bids: [Bid!] @derivedFrom(field: "auction")
 }
 
 type Bid @entity {
   id: ID!
   amount: Int!
   timestamp: String
-  bidder: User
+  bidderAddress: Bytes
   auction: Auction
 }
 
 type SausageToken @entity {
   id: ID!
-  type: BitSausageType
-  kind: String
+  type: String!
 }
 
 type User @entity {
@@ -27,14 +26,4 @@ type User @entity {
   name: String
   address: Bytes
   bid: Bid
-}
-
-enum BitSausageType {
-  CurryWurst
-  Bratwurst
-  Weisswurst
-  Frankfurter
-  Knackwurst
-  Leberwurst
-  Blutwurst
 }
