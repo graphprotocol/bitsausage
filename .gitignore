@@ -10,6 +10,7 @@ dapp/coverage
 
 # production
 dapp/build
+solidity/build
 
 # misc
 .DS_Store
