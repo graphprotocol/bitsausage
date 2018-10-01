@@ -3,6 +3,7 @@
 # dependencies
 dapp/node_modules
 node_modules
+subgraph/dist/
 
 # testing
 dapp/coverage

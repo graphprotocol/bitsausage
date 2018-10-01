@@ -1,6 +1,6 @@
 export function logNewBid(event: LogNewBid): void {
   let auction = new Entity()
-  let auctionID = Auction.bind(event.address, event.blockHash).uniqueID()
+  let auctionID = Auction.bind(event.address).uniqueID()
 
   auction.setAddress('latestBidder', event.params._latestBidder)
   auction.setString('id', auctionID.toHex())
