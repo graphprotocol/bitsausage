@@ -3,12 +3,14 @@
 # dependencies
 dapp/node_modules
 node_modules
+subgraph/dist/
 
 # testing
 dapp/coverage
 
 # production
 dapp/build
+solidity/build
 
 # misc
 .DS_Store
