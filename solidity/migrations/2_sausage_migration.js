@@ -6,7 +6,7 @@ module.exports = async function(deployer) {
   const sausage = await SausageTokens.deployed()
   await deployer.deploy(
     Auction,
-    '0xe207259495d9de39e92e8b280a85b4d845906ce6',
+    '0x94ad4774dc2da220088dc7431830a5ad77e4dcc4',
     1234,
     'Bratwurst'
   )

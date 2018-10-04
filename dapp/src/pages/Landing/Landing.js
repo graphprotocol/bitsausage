@@ -46,7 +46,7 @@ class Landing extends React.Component {
 
     let auctionContract = new web3.eth.Contract(
       contractJson.abi,
-      '0xAeB9Ad0EaeE1Ea1B47f181c8C2e7b5927b25106c'
+      '0x48424323aB5152E04998Fa6739498C35b0a2747F'
     )
 
     this.setState({ auctionContract: auctionContract })
