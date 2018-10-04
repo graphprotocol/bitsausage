@@ -2,12 +2,14 @@ pragma solidity ^0.4.24;
 
 import "./SausageTokens.sol";
 
-
 // Steps
-  // THIS CONTRACT:    create the auction contract for the ID token 
-  // SAUSAGE CONTRACT: do the transfer of the sausage to this contract
-  // THIS CONTRACT:    call startAuction
-  // then start bidding !
+  // THIS CONTRACT:    create the auction contract for the specific token (constructor id value)
+  // SAUSAGE CONTRACT: do the transfer of the sausage to this contract i.e mintUniqueTokenTo()
+  // THIS CONTRACT:    call startAuction()
+  // then start bidding
+
+
+//TODO: Who actually withdraws the ether ? The manager of the Auction contract has no way to withdraw their ether! Its stuck in the auction contract
 
 contract Auction {
     address public manager;
@@ -18,12 +20,11 @@ contract Auction {
     uint256 public uniqueID;
     bool public auctionLive;
     string public sausageName;
-
   
-    constructor(address _manager, uint256 id, string name) public 
+    constructor(address _manager, uint256 id, string name, address _erc721TokenAddr) public 
     {
         manager = _manager;
-        erc721TokenAddr = address(0xBf8C02b22ae2bd5D2f3F4775ad365dd97232d305);
+        erc721TokenAddr = _erc721TokenAddr;
         uniqueID = id;
         sausageName = name;
     }
@@ -58,12 +59,6 @@ contract Auction {
 
         emit LogAuctionOpen(sausageName, erc721TokenAddr, auctionSecondsLeft, uniqueID);
     }
- 
-
-    // so I will create the Auction contract, and I will grab the address, and then right away send the minted token to there
-    // the manager will then also call AUCTIONSTARt. then the token is locked
-    // people can then vote, and then once the final winner gets in and wins, this function unlocks
-    // this function has access to the SausageToken ABI, and it just does a transfer of the token to the winner addr with msg.sender
 
     function bid() public payable {
         require(auctionSecondsLeft > now, "Auction must be live");
@@ -75,16 +70,20 @@ contract Auction {
 
         latestBidder = msg.sender;
         latestBid = msg.value;
+
+        //TODO: Would be nice if we could make a more dynamic bidding app, that actually lets users interact with in. This just adds 10sec. very basic 
         auctionSecondsLeft = auctionSecondsLeft + 10;
         emit LogNewBid(latestBidder, latestBid, auctionSecondsLeft, sausageName);
 
     }
 
-    //unlocks when function is ended 
+    // Can only be called when the auction has ended 
     function winnerWithdraw() public {
         require(auctionSecondsLeft < now, "Auction is not over");
         require(auctionLive == true, "You must start auction before you can withdraw");
         SausageTokens st = SausageTokens(erc721TokenAddr);
+
+        //TODO: Conifrm this works
         st.transferFrom(this, latestBidder, uniqueID);
 
         emit LogAuctionClosed(sausageName, erc721TokenAddr, auctionSecondsLeft, uniqueID, latestBidder, latestBid);
