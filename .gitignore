@@ -11,6 +11,7 @@ dapp/coverage
 # production
 dapp/build
 solidity/build
+subgraph/dist
 
 # misc
 .DS_Store
