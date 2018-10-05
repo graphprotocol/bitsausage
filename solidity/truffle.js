@@ -1,4 +1,4 @@
-const HDWalletProvider = require("truffle-hdwallet-provider");
+const HDWalletProvider = require('truffle-hdwallet-provider')
 
 require('babel-register')
 require('babel-polyfill')
@@ -7,25 +7,32 @@ module.exports = {
   networks: {
     development: {
       host: '127.0.0.1',
-      port: 8545,
+      port: 7545,
       network_id: '*', // Match any network id,
-      gas: 6000000
+      gas: 6000000,
+      from: '0x94ad4774dc2da220088dc7431830a5ad77e4dcc4'
     },
     parityDevChain: {
       host: '127.0.0.1',
-      port: 7545, //MUST PASS THIS TO THE PARITY COMMAND
+      port: 7545, //MUST PASS THIS TO THE PARITY COMMAND: --jsonrpc-port 7545
       network_id: '*', // Match any network id,
-      gas: 6000000
+      gas: 6000000,
+      from: '0x94ad4774dc2da220088dc7431830a5ad77e4dcc4'
     },
     ropsten: {
       provider: () => {
         // So this is kinda inconvienient. You have to store a 12 word seed phrase on your comupter
         // This is to avoid exposing the 12 word phrase. otherwise someone can steal all your test ether
-        // don't ever share a real metamask account with real ether with your metamask that you test with 
-        
+        // don't ever share a real metamask account with real ether with your metamask that you test with
+
         // FIXME: TRY TO FIND ANOTHER WAY TO DO THIS
         // Who would be good? aragon, status, maker, check these
-        return new HDWalletProvider(require('fs').readFileSync('~/Desktop/the-graph/work-metmask-12-word/.privkey').toString(), "https://ropsten.infura.io/")
+        return new HDWalletProvider(
+          require('fs')
+            .readFileSync('~/Desktop/the-graph/work-metmask-12-word/.privkey')
+            .toString(),
+          'https://ropsten.infura.io/'
+        )
       },
       network_id: '3', // Match any network id
       gas: 4500000,
@@ -33,9 +40,13 @@ module.exports = {
     },
     kovan: {
       provider: () => {
-
         // FIXME: TRY TO FIND ANOTHER WAY TO DO THIS
-        return new HDWalletProvider(require('fs').readFileSync('./privKey').toString(), "https://kovan.infura.io/")
+        return new HDWalletProvider(
+          require('fs')
+            .readFileSync('./privKey')
+            .toString(),
+          'https://kovan.infura.io/'
+        )
       },
       network_id: '42',
       gas: 7900000,
@@ -44,8 +55,8 @@ module.exports = {
     solc: {
       optimizer: {
         enabled: true,
-        runs: 200,
-      },
-    },
-}
+        runs: 200
+      }
+    }
+  }
 }
