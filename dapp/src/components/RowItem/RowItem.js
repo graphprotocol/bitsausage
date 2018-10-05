@@ -4,18 +4,16 @@ import { Grid, Typography } from '@material-ui/core'
 
 import styles from './RowItem.styles'
 
-const RowItem = ({ classes }) => (
+const RowItem = ({ classes, bid, index }) => (
   <Grid container className={classes.bidRow}>
     <Grid item className={classes.bidder} />
     <Grid container direction="column" className={classes.bidderInfo}>
-      <Grid className={classes.bidderName}>Bidder 1</Grid>
-      <Grid className={classes.bidderAddress}>
-        0x85cb85bf6d9be8b0342c850673628ad376d12c05
-      </Grid>
+      <Grid className={classes.bidderName}>Bidder {index + 1}</Grid>
+      <Grid className={classes.bidderAddress}>{bid.bidderAddress}</Grid>
     </Grid>
     <Grid item className={classes.bidAmount}>
       <Typography className={classes.number}>
-        45 <span>eth</span>
+        {bid.amount} <span>eth</span>
       </Typography>
     </Grid>
   </Grid>

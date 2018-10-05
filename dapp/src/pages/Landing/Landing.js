@@ -20,8 +20,8 @@ class Landing extends React.Component {
       name: '', // props.match.params.name,
       description: wursts.filter(wurst => wurst.name === 'Bratwurst')[0]
         .description,
-      leadingBid: 0,
-      auctionSecLeft: 0,
+      leadingBid: props.auction.latestBid.amount,
+      auctionSecLeft: props.auction.expirationTime,
       type: 'common',
       latestBidder: ''
     }
@@ -56,19 +56,29 @@ class Landing extends React.Component {
       .call()
       .then(name => this.setState({ name: name }))
 
-    auctionContract.methods
-      .auctionSecondsLeft()
-      .call()
-      .then(auctionSecLeft => this.setState({ auctionSecLeft: auctionSecLeft }))
+    // auctionContract.methods
+    //   .auctionSecondsLeft()
+    //   .call()
+    //   .then(auctionSecLeft => this.setState({ auctionSecLeft: auctionSecLeft }))
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (
+      nextProps.auction.latestBid.amount !== this.props.auction.latestBid.amount
+    ) {
+      //Perform some operation
+      this.setState({ leadingBid: nextProps.auction.latestBid.amount })
+      this.classMethod()
+    }
   }
 
   handleBidClick() {
     const account0 = this.state.data[0]
 
-    this.state.auctionContract.methods
-      .latestBid()
-      .call()
-      .then(latestBid => this.setState({ leadingBid: parseInt(latestBid, 10) }))
+    // this.state.auctionContract.methods
+    //   .latestBid()
+    //   .call()
+    //   .then(latestBid => this.setState({ leadingBid: parseInt(latestBid, 10) }))
 
     this.state.auctionContract.methods
       .latestBidder()
@@ -114,8 +124,7 @@ class Landing extends React.Component {
   }
 
   render() {
-    const { classes } = this.props
-
+    const { classes, auction } = this.props
     return (
       <Grid className={classes.root}>
         <WinnerOverlay handleCloseClick={this.handleCloseClick} />
@@ -135,6 +144,7 @@ class Landing extends React.Component {
             <a
               href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn"
               target="_blank"
+              rel="noopener noreferrer"
             >
               MetaMask
             </a>{' '}
@@ -152,8 +162,8 @@ class Landing extends React.Component {
         <img src="/images/divider-big.svg" alt="divider" />
         <BidStats
           title={this.state.name}
-          pillText="100 bids"
-          rows={[1, 2, 3, 4]}
+          pillText={auction.bids.length}
+          bids={auction.bids}
         />
       </Grid>
     )

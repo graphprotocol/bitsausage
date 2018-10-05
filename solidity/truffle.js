@@ -12,10 +12,10 @@ module.exports = {
       gas: 6000000,
       from: '0x94ad4774dc2da220088dc7431830a5ad77e4dcc4'
     },
-    parityDevChain: {
+    parity: {
       host: '127.0.0.1',
-      port: 7545, //MUST PASS THIS TO THE PARITY COMMAND: --jsonrpc-port 7545
-      network_id: '*', // Match any network id,
+      port: 8545,
+      network_id: '*',
       gas: 6000000,
       from: '0x94ad4774dc2da220088dc7431830a5ad77e4dcc4'
     },

@@ -46,7 +46,7 @@ const Wurst = ({
         <div className={classes.divider} />
         <Grid container justify="space-evenly">
           <Typography className={classnames(classes.number, classes.seconds)}>
-            {auctionSecLeft.minutes} <span>min</span>
+            {minutes(auctionSecLeft.minutes)} <span>min</span>
           </Typography>
           <Typography className={classnames(classes.number, classes.seconds)}>
             {auctionSecLeft.seconds} <span>sec</span>
@@ -79,5 +79,11 @@ const Wurst = ({
     </Grid>
   </Grid>
 )
+
+const minutes = min => {
+  if (String(min).length > 2) {
+    return String(min).slice(0, 2)
+  }
+}
 
 export default withStyles(styles)(Wurst)

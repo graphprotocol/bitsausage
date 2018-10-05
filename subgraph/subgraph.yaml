@@ -5,7 +5,7 @@ dataSources:
 - kind: ethereum/contract
   name: Bitsausage
   source:
-    address: "AeB9Ad0EaeE1Ea1B47f181c8C2e7b5927b25106c"
+    address: "0xF0909E9C610dC497260eB0729D181275251B467b"
     abi: Auction
   mapping:
     kind: ethereum/events

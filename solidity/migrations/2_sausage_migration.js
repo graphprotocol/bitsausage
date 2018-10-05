@@ -10,21 +10,21 @@ module.exports = async function(deployer, network) {
   let sausageDescription = 'Bratwurst - Rare'
   let sausageInstance
   let managerAccount
+  let accounts
 
   if (network === 'development') {
     web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'))
-    managerAccount = web3.eth.accounts[0]
+    managerAccount = web3.accounts[0]
   } else if (network === 'kovan') {
     // do something similar
+  } else if (network === 'parity') {
+    web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'))
+    await web3.eth.getAccounts().then(acc => {
+      accounts = acc
+      managerAccount = acc[1]
+    })
   }
 
-  /* NOTE: These are the unlocked parity addresses */
-  managerAccount = '0x94ad4774dc2da220088dc7431830a5ad77e4dcc4'
-  accounts = [
-    '0x94ad4774dc2da220088dc7431830a5ad77e4dcc4',
-    '0x94ad4774dc2da220088dc7431830a5ad77e4dcc4',
-    '0x94ad4774dc2da220088dc7431830a5ad77e4dcc4'
-  ]
   return deployer
     .deploy(SausageTokens, 'SausageTokens', 'Bratwurst', {
       from: managerAccount
@@ -49,7 +49,7 @@ module.exports = async function(deployer, network) {
       )
       await auctionInstance.startAuction(1000, { from: managerAccount }) //auction has 1000 seconds
 
-      let originalBid = 10
+      let originalBid = 1
       await auctionInstance.bid({ from: managerAccount, value: originalBid }) //note, value is 10 wei, or 10^-18 ether
 
       let managerAddr = await auctionInstance.manager.call()
@@ -88,12 +88,12 @@ module.exports = async function(deployer, network) {
         let bidder_1_value = bidderCounter + 1
         let bidder_2_value = bidder_1_value + 1
         bidderCounter = bidder_2_value
-
+        console.log(`BID ${bidderNum}: ${bidder_1_value}`)
         await auctionInstance.bid({ from: accounts[1], value: bidder_1_value }) //note, value is 10 wei, or 10^-18 ether
+
+        console.log(`BID ${bidderNum + 1}: ${bidder_2_value}`)
         await auctionInstance.bid({ from: accounts[2], value: bidder_2_value }) //note, value is 10 wei, or 10^-18 ether
 
-        console.log(`BID ${bidderNum}: ${bidder_1_value}`)
-        console.log(`BID ${bidderNum + 1}: ${bidder_2_value}`)
         bidderNum += 2
       }
 

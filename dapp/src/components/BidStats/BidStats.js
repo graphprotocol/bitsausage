@@ -10,7 +10,7 @@ const BidStats = ({
   classes,
   title,
   pillText,
-  rows,
+  bids,
   coin,
   value,
   buttonText,
@@ -38,8 +38,8 @@ const BidStats = ({
     </Grid>
 
     <Grid className={classes.bidWrapper}>
-      {rows.map((el, index) => (
-        <RowItem key={index} />
+      {bids.map((bid, index) => (
+        <RowItem index={index} bid={bid} key={index} />
       ))}
     </Grid>
   </Grid>

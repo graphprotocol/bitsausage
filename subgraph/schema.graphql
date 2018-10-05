@@ -10,8 +10,7 @@ type Auction @entity {
 
 type Bid @entity {
   id: ID!
-  amount: Int!
-  timestamp: String
+  amount: BigInt!
   bidderAddress: Bytes
   auction: Auction
 }
