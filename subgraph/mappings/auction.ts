@@ -1,15 +1,21 @@
 export function logNewBid(event: LogNewBid): void {
+  let auctionID = Auction.bind(event.address)
+    .uniqueID()
+    .toHex()
+  let bidID = concatU256(event.params._timeLeft, event.params._amount).toHex()
+
   let auction = new Entity()
-  let auctionID = Auction.bind(event.address).uniqueID()
 
   auction.setAddress('latestBidder', event.params._latestBidder)
-  auction.setString('id', auctionID.toHex())
+  auction.setString('latestBid', bidID)
+  store.set('Auction', auctionID, auction)
 
   let bid = new Entity()
+  bid.setString('id', bidID)
   bid.setU256('amount', event.params._amount)
-  bid.setString('auction', auctionID.toHex())
-
-  store.set('Bid', auctionID.toHex(), bid)
+  bid.setString('auction', auctionID)
+  bid.setAddress('bidderAddress', event.params._latestBidder)
+  store.set('Bid', bidID, bid)
 }
 
 export function logAuctionOpen(event: LogAuctionOpen): void {
@@ -37,4 +43,15 @@ export function logAuctionClosed(event: LogAuctionClosed): void {
   auction.setU256('latestBid', event.params._finalBid)
 
   store.set('Auction', event.params._uniqueID.toHex(), auction)
+}
+
+function concatU256(a: U256, b: U256): U256 {
+  let result = new Array<u64>()
+  for (var i = 0; i < a.length; i++) {
+    result[i] = a[i]
+  }
+  for (var j = 0; j < b.length; j++) {
+    result[a.length + j] = b[j]
+  }
+  return result as U256
 }

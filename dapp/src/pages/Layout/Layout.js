@@ -11,13 +11,17 @@ import Dashboard from '../../pages/Dashboard/Dashboard'
 
 class Layout extends React.Component {
   render() {
-    const { classes, data } = this.props
-    console.log('DATA: ', data)
+    const { classes, auction } = this.props
+
     return (
       <Grid className={classes.root}>
         <Nav />
         <Switch>
-          <Route exact path="/" component={Landing} />
+          <Route
+            exact
+            path="/"
+            render={props => <Landing {...props} auction={auction} />}
+          />
           <Route path="/about" component={About} />
           <Route path="/profile" component={Dashboard} />
         </Switch>

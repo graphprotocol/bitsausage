@@ -67,7 +67,7 @@ const styles = {
     fontWeight: 500,
     '& span': {
       top: '-12px',
-      left: '40px',
+      left: '75px',
       position: 'absolute',
       textTransform: 'uppercase',
       fontSize: ' 0.875rem',
